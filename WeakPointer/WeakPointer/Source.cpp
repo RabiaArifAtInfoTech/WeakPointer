@@ -15,6 +15,8 @@ public:
 		std::cout << "\nConstructor of Author called";
 
 		name = AuthName;
+
+		std::cout << "\nbPtr.use_count() == " << bPtr.use_count() << "; ";
 	}
 	/*Author& operator=(std::shared_ptr<Book>& shPtr)
 	{
@@ -33,6 +35,8 @@ public:
 	}
 	~Author() {
 		std::cout << "\nDestructor of Author called";
+
+		std::cout << "\nbPtr.use_count() == " << bPtr.use_count() << "; ";
 	}
 
 };
@@ -57,6 +61,9 @@ public:
 		ISBN = ID;
 		publishYear = year;
 		bookDetail = detail;
+
+
+		std::cout << "\naPtr.use_count() == " << aPtr.use_count() << "; ";
 	}
 	/*Book& operator=(std::shared_ptr<Author>& shPtr)
 	{
@@ -77,6 +84,8 @@ public:
 	{
 		std::cout << "\nDestructor of Book called";
 
+
+		std::cout << "\naPtr.use_count() == " << aPtr.use_count() << "; ";
 	}
 };
 
@@ -88,7 +97,10 @@ int main()
 	std::shared_ptr<Author> a = std::make_shared<Author>("Lewis");
 	std::shared_ptr<Book> b = std::make_shared<Book>("ABC", 123, 2016, "Book about programming");
 	a->bPtr = b;
+
+	std::cout << "\na.use_count() == " << a.use_count() << "; ";
 	b->aPtr = a;
+	std::cout << "\nb.use_count() == " << b.use_count() << "; ";
 
 
 	std::cout << "\n\n\n";
